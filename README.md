@@ -6,8 +6,13 @@ Looking for a fast way to use Cleverbot.io in your application? Do you hate deal
 This project uses [cleverbot.io][1].
 
 # How to
-At first, aquire you API credentials [here](https://cleverbot.io/keys).
-Then create a bot session and send anything.
+
+1. Create a Visual Studio .NET 4.5 solution and **save it**.
+2. In Visual Studio menu bar, go to `Tools -> NuGet Package Manager -> Package Manager Console`.
+3. Type `Install-Package Cleverbot.Net` and wait.
+4. Aquire your API credentials [here](https://cleverbot.io/keys).
+
+Then create a `CleverbotSession` and send anything:
 
 ```csharp
 var session = CleverbotSession.NewSession("apiUser", "apiKey");
