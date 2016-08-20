@@ -26,6 +26,7 @@ namespace Cleverbot.Net.Io.Api
             catch (WebException e)
             {
                 if (e.Status != WebExceptionStatus.ProtocolError) throw;
+                if (((HttpWebResponse) e.Response).StatusCode != HttpStatusCode.BadRequest) throw;
                 string status;
                 try
                 {
