@@ -1,13 +1,14 @@
 ﻿using System;
 using Cleverbot.Net;
 
-class Program
+internal class Program
 {
-    static void Main()
+    private static void Main()
     {
         string message;
         var session = CleverbotSession.NewSession("apiUser", "apiKey");
-        do {
+        do
+        {
             Console.Write("Type your message: ");
             message = Console.ReadLine();
             Console.Write("Bot: ");

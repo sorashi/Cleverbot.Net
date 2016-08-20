@@ -9,14 +9,15 @@ namespace Cleverbot.Net.Io.Api
     public class CleverbotUserAgent
     {
         /// <summary>
-        /// Does a HTTP POST request to the specified <paramref name="url"/> and with the specified <paramref name="postBody"/>
+        ///     Does a HTTP POST request to the specified <paramref name="url" /> and with the specified
+        ///     <paramref name="postBody" />
         /// </summary>
         /// <param name="url"></param>
         /// <param name="postBody">The body of the request, containing application/json</param>
         /// <returns></returns>
         public static async Task<string> PostAsync(string url, string postBody)
         {
-            var request = (HttpWebRequest)WebRequest.Create(url);
+            var request = (HttpWebRequest) WebRequest.Create(url);
             request.Method = "POST";
             request.Accept = "*/*";
             request.ContentType = "application/json";

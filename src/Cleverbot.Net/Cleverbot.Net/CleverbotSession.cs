@@ -5,27 +5,31 @@ using Cleverbot.Net.Io.Api;
 namespace Cleverbot.Net
 {
     /// <summary>
-    /// A class representing a session with a cleverbot
+    ///     A class representing a session with a cleverbot
     /// </summary>
     public class CleverbotSession
     {
+        private CleverbotSession()
+        {
+        }
+
         /// <summary>
-        /// The user of the API
+        ///     The user of the API
         /// </summary>
         private string ApiUser { get; set; }
+
         /// <summary>
-        /// The API key
+        ///     The API key
         /// </summary>
         private string ApiKey { get; set; }
+
         /// <summary>
-        /// The nick of the bot in the current session
+        ///     The nick of the bot in the current session
         /// </summary>
         public string BotNick { get; private set; }
 
-        private CleverbotSession() {}
-
         /// <summary>
-        /// Get a new bot using the <paramref name="apiUser"/> and <paramref name="apiKey"/>
+        ///     Get a new bot using the <paramref name="apiUser" /> and <paramref name="apiKey" />
         /// </summary>
         /// <param name="apiUser"></param>
         /// <param name="apiKey"></param>
@@ -35,13 +39,16 @@ namespace Cleverbot.Net
             var session = new CleverbotSession {ApiUser = apiUser, ApiKey = apiKey};
             var createResponse =
                 await CleverbotCreateApi.GetResponseAsync(new CleverbotCreateRequest(session.ApiUser, session.ApiKey));
-            if(createResponse.Status != "success") throw new Exception("The bot creation wasn't successful. Check your API credentials and try again. API returned status: " + createResponse.Status);
+            if (createResponse.Status != "success")
+                throw new Exception(
+                    "The bot creation wasn't successful. Check your API credentials and try again. API returned status: " +
+                    createResponse.Status);
             session.BotNick = createResponse.Nick;
             return session;
         }
 
         /// <summary>
-        /// Get a new bot using the <paramref name="apiUser"/> and <paramref name="apiKey"/>
+        ///     Get a new bot using the <paramref name="apiUser" /> and <paramref name="apiKey" />
         /// </summary>
         /// <param name="apiUser"></param>
         /// <param name="apiKey"></param>
@@ -52,7 +59,7 @@ namespace Cleverbot.Net
         }
 
         /// <summary>
-        /// Send a question/message to the bot and get the response
+        ///     Send a question/message to the bot and get the response
         /// </summary>
         /// <param name="message">The message to be sent to the bot</param>
         /// <returns></returns>
@@ -60,13 +67,15 @@ namespace Cleverbot.Net
         {
             var askResponse =
                 await
-                    CleverbotAskApi.GetResponseAsync(new CleverbotAskRequest(this.ApiUser, this.ApiKey, this.BotNick,
+                    CleverbotAskApi.GetResponseAsync(new CleverbotAskRequest(ApiUser, ApiKey, BotNick,
                         message));
-            if(askResponse.Status != "success") throw new Exception("The API returned non-success status code: " + askResponse.Status);
+            if (askResponse.Status != "success")
+                throw new Exception("The API returned non-success status code: " + askResponse.Status);
             return askResponse.Response;
         }
+
         /// <summary>
-        /// Send a question/message to the bot and get the response
+        ///     Send a question/message to the bot and get the response
         /// </summary>
         /// <param name="message">The message to be sent to the bot</param>
         /// <returns></returns>

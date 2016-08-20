@@ -4,11 +4,12 @@ using Newtonsoft.Json;
 namespace Cleverbot.Net.Io.Api
 {
     /// <summary>
-    /// The API class used to POST a message to the bot and get the response
+    ///     The API class used to POST a message to the bot and get the response
     /// </summary>
     public static class CleverbotAskApi
     {
         private const string CleverbotAskApiUrl = @"https://cleverbot.io/1.0/ask";
+
         public static async Task<CleverbotAskResponse> GetResponseAsync(CleverbotAskRequest request)
         {
             var json = JsonConvert.SerializeObject(request);
@@ -16,20 +17,12 @@ namespace Cleverbot.Net.Io.Api
             return JsonConvert.DeserializeObject<CleverbotAskResponse>(result);
         }
     }
+
     /// <summary>
-    /// A JSON object, representing the ask request
+    ///     A JSON object, representing the ask request
     /// </summary>
     public class CleverbotAskRequest
     {
-        [JsonProperty(PropertyName = "user")]
-        public string User { get; }
-        [JsonProperty(PropertyName = "key")]
-        public string Key { get; }
-        [JsonProperty(PropertyName = "nick")]
-        public string Nick { get; }
-        [JsonProperty(PropertyName = "text")]
-        public string Text { get; }
-
         public CleverbotAskRequest(string user, string key, string nick, string text)
         {
             User = user;
@@ -37,21 +30,35 @@ namespace Cleverbot.Net.Io.Api
             Nick = nick;
             Text = text;
         }
+
+        [JsonProperty(PropertyName = "user")]
+        public string User { get; }
+
+        [JsonProperty(PropertyName = "key")]
+        public string Key { get; }
+
+        [JsonProperty(PropertyName = "nick")]
+        public string Nick { get; }
+
+        [JsonProperty(PropertyName = "text")]
+        public string Text { get; }
     }
+
     /// <summary>
-    /// A JSON object representing the ask response
+    ///     A JSON object representing the ask response
     /// </summary>
     public class CleverbotAskResponse
     {
-        [JsonProperty(PropertyName = "status")]
-        public string Status { get; }
-        [JsonProperty(PropertyName = "response")]
-        public string Response { get; }
-
         public CleverbotAskResponse(string status, string response)
         {
             Status = status;
             Response = response;
         }
+
+        [JsonProperty(PropertyName = "status")]
+        public string Status { get; }
+
+        [JsonProperty(PropertyName = "response")]
+        public string Response { get; }
     }
 }
