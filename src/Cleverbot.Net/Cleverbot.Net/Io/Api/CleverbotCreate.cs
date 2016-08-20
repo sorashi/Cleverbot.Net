@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace Cleverbot.Net.Io.Api
 {
+    /// <summary>
+    /// The API class used to request an assignment of a bot from the API
+    /// </summary>
     public static class CleverbotCreateApi
     {
         private const string CleverbotCreateApiUrl = @"https://cleverbot.io/1.0/create";
@@ -13,6 +16,9 @@ namespace Cleverbot.Net.Io.Api
             return JsonConvert.DeserializeObject<CleverbotCreateResponse>(result);
         }
     }
+    /// <summary>
+    /// A JSON object representing the request for the creation/assignment of a bot
+    /// </summary>
     public class CleverbotCreateRequest
     {
         [JsonProperty(PropertyName = "user")]
@@ -30,6 +36,9 @@ namespace Cleverbot.Net.Io.Api
             User = user;
         }
     }
+    /// <summary>
+    /// A JSON object representing the response of the creation/assignment of a bot
+    /// </summary>
     public class CleverbotCreateResponse
     {
         [JsonProperty(PropertyName = "status")]

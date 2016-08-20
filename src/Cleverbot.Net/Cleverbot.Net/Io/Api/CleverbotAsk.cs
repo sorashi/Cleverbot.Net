@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace Cleverbot.Net.Io.Api
 {
+    /// <summary>
+    /// The API class used to POST a message to the bot and get the response
+    /// </summary>
     public static class CleverbotAskApi
     {
         private const string CleverbotAskApiUrl = @"https://cleverbot.io/1.0/ask";
@@ -13,6 +16,9 @@ namespace Cleverbot.Net.Io.Api
             return JsonConvert.DeserializeObject<CleverbotAskResponse>(result);
         }
     }
+    /// <summary>
+    /// A JSON object, representing the ask request
+    /// </summary>
     public class CleverbotAskRequest
     {
         [JsonProperty(PropertyName = "user")]
@@ -32,6 +38,9 @@ namespace Cleverbot.Net.Io.Api
             Text = text;
         }
     }
+    /// <summary>
+    /// A JSON object representing the ask response
+    /// </summary>
     public class CleverbotAskResponse
     {
         [JsonProperty(PropertyName = "status")]

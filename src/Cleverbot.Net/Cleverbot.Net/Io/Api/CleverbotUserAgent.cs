@@ -8,6 +8,12 @@ namespace Cleverbot.Net.Io.Api
 {
     public class CleverbotUserAgent
     {
+        /// <summary>
+        /// Does a HTTP POST request to the specified <paramref name="url"/> and with the specified <paramref name="postBody"/>
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="postBody">The body of the request, containing application/json</param>
+        /// <returns></returns>
         public static async Task<string> PostAsync(string url, string postBody)
         {
             var request = (HttpWebRequest)WebRequest.Create(url);
@@ -25,6 +31,7 @@ namespace Cleverbot.Net.Io.Api
             }
             catch (WebException e)
             {
+                // The API returns error 400 (one of the protocol errors) when there is something wrong with the data sent to it. It returns a JSON object with a status message inside.
                 if (e.Status != WebExceptionStatus.ProtocolError) throw;
                 if (((HttpWebResponse) e.Response).StatusCode != HttpStatusCode.BadRequest) throw;
                 string status;
