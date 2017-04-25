@@ -30,24 +30,10 @@ using System.Threading.Tasks;
 
 namespace Cleverbot.Net
 {
-    /// <summary>
-    ///     A class representing a session with a cleverbot
-    /// </summary>
-    [Obsolete("This class will be removed in the future versions. Use CleverbotIoSession instead.")]
-    public class CleverbotSession
+    public class CleverbotIoSession
     {
-        private CleverbotSession() {
+        private CleverbotIoSession() {
         }
-
-        /// <summary>
-        ///     The user of the API
-        /// </summary>
-        private string ApiUser { get; set; }
-
-        /// <summary>
-        ///     The API key
-        /// </summary>
-        private string ApiKey { get; set; }
 
         /// <summary>
         ///     The nick of the bot in the current session
@@ -55,13 +41,33 @@ namespace Cleverbot.Net
         public string BotNick { get; private set; }
 
         /// <summary>
+        ///     The API key
+        /// </summary>
+        private string ApiKey { get; set; }
+
+        /// <summary>
+        ///     The user of the API
+        /// </summary>
+        private string ApiUser { get; set; }
+
+        /// <summary>
         ///     Get a new bot using the <paramref name="apiUser" /> and <paramref name="apiKey" />
         /// </summary>
         /// <param name="apiUser"></param>
         /// <param name="apiKey"></param>
         /// <returns></returns>
-        public static async Task<CleverbotSession> NewSessionAsync(string apiUser, string apiKey) {
-            var session = new CleverbotSession {ApiUser = apiUser, ApiKey = apiKey};
+        public static CleverbotIoSession NewSession(string apiUser, string apiKey) {
+            return NewSessionAsync(apiUser, apiKey).Result;
+        }
+
+        /// <summary>
+        ///     Get a new bot using the <paramref name="apiUser" /> and <paramref name="apiKey" />
+        /// </summary>
+        /// <param name="apiUser"></param>
+        /// <param name="apiKey"></param>
+        /// <returns></returns>
+        public static async Task<CleverbotIoSession> NewSessionAsync(string apiUser, string apiKey) {
+            var session = new CleverbotIoSession {ApiUser = apiUser, ApiKey = apiKey};
             var createResponse =
                 await CleverbotCreateApi.GetResponseAsync(new CleverbotCreateRequest(session.ApiUser, session.ApiKey));
             if (createResponse.Status != "success")
@@ -73,13 +79,12 @@ namespace Cleverbot.Net
         }
 
         /// <summary>
-        ///     Get a new bot using the <paramref name="apiUser" /> and <paramref name="apiKey" />
+        ///     Send a question/message to the bot and get the response
         /// </summary>
-        /// <param name="apiUser"></param>
-        /// <param name="apiKey"></param>
+        /// <param name="message">The message to be sent to the bot</param>
         /// <returns></returns>
-        public static CleverbotSession NewSession(string apiUser, string apiKey) {
-            return NewSessionAsync(apiUser, apiKey).Result;
+        public string Send(string message) {
+            return SendAsync(message).Result;
         }
 
         /// <summary>
@@ -95,15 +100,6 @@ namespace Cleverbot.Net
             if (askResponse.Status != "success")
                 throw new Exception("The API returned non-success status code: " + askResponse.Status);
             return askResponse.Response;
-        }
-
-        /// <summary>
-        ///     Send a question/message to the bot and get the response
-        /// </summary>
-        /// <param name="message">The message to be sent to the bot</param>
-        /// <returns></returns>
-        public string Send(string message) {
-            return SendAsync(message).Result;
         }
     }
 }

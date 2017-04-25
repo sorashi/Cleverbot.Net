@@ -38,15 +38,19 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cleverbot.cs" />
+    <Compile Include="CleverbotIoSession.cs" />
     <Compile Include="CleverbotSession.cs" />
+    <Compile Include="Com\Api\CleverbotComApi.cs" />
     <Compile Include="Io\Api\CleverbotAsk.cs" />
     <Compile Include="Io\Api\CleverbotCreate.cs" />
-    <Compile Include="Io\Api\CleverbotUserAgent.cs" />
+    <Compile Include="CleverbotUserAgent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
