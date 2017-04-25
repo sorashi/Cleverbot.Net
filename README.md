@@ -20,7 +20,7 @@ This project uses [cleverbot.io][1].
 Then create a `CleverbotSession` and send anything:
 
 ```csharp
-var session = CleverbotSession.NewSession("apiUser", "apiKey");
+var session  = CleverbotSession.NewSession("apiUser", "apiKey");
 var response = session.Send("Hello.");
 ```
 
@@ -44,6 +44,14 @@ class Program
         } while (message.ToLower().Trim() != "exit");
     }
 }
+```
+
+# Asynchronous requests
+This wrapper allows you to use the asynchronous functionality. Basically, you just `await` the methods and add *Async* to the end of their names.
+
+```csharp
+var session  = await CleverbotSession.NewSessionAsync("apiUser", "apiKey");
+var response = await session.SendAsync("Hello.");
 ```
 
 [1]: http://cleverbot.io
