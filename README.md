@@ -22,7 +22,7 @@ Looking for a fast way to use Cleverbot.io or Cleverbot.com in your application?
 Create a `CleverbotIoSession` and send anything:
 
 ```csharp
-var session  = CleverbotSession.NewSession("apiUser", "apiKey");
+var session  = CleverbotIoSession.NewSession("apiUser", "apiKey");
 var response = session.Send("Hello.");
 ```
 
@@ -49,9 +49,11 @@ class Program
 ```
 
 ## If you want to use Cleverbot.com
+Use `CleverbotComSession` instead
 
 ```csharp
-// TODO: add
+var session  = CleverbotComSession.NewSession("apiKey");
+var response = session.Send("Hello.");
 ```
 
 # Cleverbot comparison

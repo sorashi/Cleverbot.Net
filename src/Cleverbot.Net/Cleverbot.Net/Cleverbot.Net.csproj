@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cleverbot.cs" />
+    <Compile Include="CleverbotComSession.cs" />
     <Compile Include="CleverbotIoSession.cs" />
     <Compile Include="CleverbotSession.cs" />
     <Compile Include="Com\Api\CleverbotComApi.cs" />

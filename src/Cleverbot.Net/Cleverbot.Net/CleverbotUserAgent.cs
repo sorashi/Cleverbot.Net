@@ -1,19 +1,19 @@
 ﻿#region LICENSE
 
 // MIT License
-//
+// 
 // Copyright (c) 2017 Sorashi
-//
+// 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-//
+// 
 // The above copyright notice and this permission notice shall be included in all
 // copies or substantial portions of the Software.
-//
+// 
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,13 +22,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#endregion LICENSE
+#endregion
 
-using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 namespace Cleverbot.Net
 {
@@ -36,6 +36,12 @@ namespace Cleverbot.Net
     {
         private const string UserAgent = "Cleverbot.Net 1.0";
 
+        /// <summary>
+        ///     Sends an HTTP GET request and formats exceptions based on the <paramref name="cleverbot" />
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="cleverbot"></param>
+        /// <returns></returns>
         public static async Task<string> GetAsync(string url, Cleverbot cleverbot) {
             var request = (HttpWebRequest) WebRequest.Create(url);
             request.Method = "GET";
@@ -56,8 +62,8 @@ namespace Cleverbot.Net
         }
 
         /// <summary>
-        ///     Does a HTTP POST request to the specified <paramref name="url" /> and with the specified
-        ///     <paramref name="postBody" />
+        ///     Does an HTTP POST request to the specified <paramref name="url" /> and with the specified
+        ///     <paramref name="postBody" /> and formats exceptions based on the <paramref name="cleverbot" />
         /// </summary>
         /// <param name="url"></param>
         /// <param name="postBody">The body of the request, containing application/json</param>
@@ -86,6 +92,12 @@ namespace Cleverbot.Net
             return result;
         }
 
+        /// <summary>
+        ///     Formats a <see cref="WebException" />, <paramref name="cleverbot" /> specific
+        /// </summary>
+        /// <param name="e"></param>
+        /// <param name="cleverbot"></param>
+        /// <returns></returns>
         private static async Task<Exception> FormatWebException(WebException e, Cleverbot cleverbot) {
             if (e.Status != WebExceptionStatus.ProtocolError) throw e;
             var message =

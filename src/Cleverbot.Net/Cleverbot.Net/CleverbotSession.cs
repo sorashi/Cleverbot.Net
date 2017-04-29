@@ -33,7 +33,7 @@ namespace Cleverbot.Net
     /// <summary>
     ///     A class representing a session with a cleverbot
     /// </summary>
-    [Obsolete("This class will be removed in the future versions. Use CleverbotIoSession instead.")]
+    [Obsolete("This class will be used for a different purpose in future versions. Use CleverbotIoSession or CleverbotComSession instead.")]
     public class CleverbotSession
     {
         private CleverbotSession() {
