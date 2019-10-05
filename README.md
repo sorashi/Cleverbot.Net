@@ -6,6 +6,14 @@ Cleverbot.Net
 [![GitHub forks](https://img.shields.io/github/forks/Sorashi/Cleverbot.Net.svg)](https://github.com/Sorashi/Cleverbot.Net/network)
 [![Twitter](https://img.shields.io/twitter/url/https/github.com/Sorashi/Cleverbot.Net.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2FSorashi%2FCleverbot.Net)
 
+<h2>
+
+```diff
+- CLEVERBOT.IO API IS CURRENTLY DOWN, see issues -
+```
+
+</h2>
+
 Looking for a fast way to use Cleverbot.io in your application? Do you hate dealing with HTTP requests? You found the right tool!
 
 This project uses [cleverbot.io][1].
