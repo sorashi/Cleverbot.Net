@@ -18,7 +18,7 @@ Looking for a fast way to use Cleverbot.io in your application? Do you hate deal
 
 This project uses [cleverbot.io][1].
 
-# How to
+# Usage
 
 1. Create a Visual Studio .NET 4.5 solution and **save it**.
 2. In Visual Studio menu bar, go to `Tools -> NuGet Package Manager -> Package Manager Console`.
